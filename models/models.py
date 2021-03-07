@@ -1,5 +1,5 @@
 import numpy as np
-from utils.utils import updateBoardCheck
+from utils.utils import UpdateBoardCheck
 from copy import deepcopy
 from .pieces import Piece
 
@@ -9,24 +9,48 @@ class Board():
         self.size = (16, 10)
         self.table = np.zeros(self.size, np.int8)
         self.blank_table = deepcopy(self.table)
-        self.updateBoardCheck = updateBoardCheck()
+        self.updateBoardCheck = UpdateBoardCheck()
         self.pieces = []
 
-    # def loadPiece():
-   
-    def _mapPiece(self):
-        self._tableClear()
-        self.table[self.pieces[-1].y][self.pieces[-1].x] = self.pieces[-1].type
-
     def loadPiece(self):
+        self.blank_table = deepcopy(self.table)
         self.pieces.append(Piece())
         self._mapPiece()
+   
+    def _mapPiece(self):
+    # try: # try para evitar extrapolação de índices da matriz
+        self._tableClear()
+        self.table[self.pieces[-1].y][self.pieces[-1].x] = self.pieces[-1].type 
+    # except IndexError: # tratamento de erro de extrapolação de índice, geralmente causado pelo fim do tabuleiro 
+        # print("fim do tabuleiro")
+        # raise IndexError 
     
     def pieceDrop(self):
-        self.pieces[-1].moveDown()
-        self._mapPiece()
-        pass
+        try: # try para evitar extrapolação de índices da matriz
+            self.pieces[-1].moveDown()
+            self._mapPiece()
+        except IndexError: # tratamento de erro de extrapolação de índice, geralmente causado pelo fim do tabuleiro 
+            self.pieces[-1].moveUp()
+            self._mapPiece()
+            self.loadPiece()
     
+    def pieceLeft(self):
+        try:
+            self.pieces[-1].moveLeft() # caso x extrapole para a direita assumirá a posição [-1] que é igual
+                                       # ao final do tabuleiro e não um erro, gerando "teletransporte"
+            self._mapPiece()
+        except IndexError:
+            self.pieces[-1].moveRight()
+            self._mapPiece()
+
+    def pieceRight(self):
+        try:
+            self.pieces[-1].moveRight()
+            self._mapPiece()
+        except IndexError:
+            self.pieces[-1].moveLeft()
+            self._mapPiece() 
+
     def getPieceCounter(self) -> int:
         return len(self.pieces)
 

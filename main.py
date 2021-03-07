@@ -1,13 +1,12 @@
 #learn how to use event listener as e press
 from models.models import Board
-from utils.utils import KeyPressedGame
+from utils.utils import KeyPressedMove
 from time import time
-
-
 
 def main():
 
-    keyboard = KeyPressedGame()
+    buttonLeft = KeyPressedMove()
+    buttonRight = KeyPressedMove()
 
     board = Board()
 
@@ -23,7 +22,10 @@ def main():
             board.pieceDrop()
             board.updateBoard()
   
-        keyboard.keyPressedOnce('q')
+        buttonLeft.keyPressedMove('a', board.pieceLeft) # ajustar movimentação
+        buttonRight.keyPressedMove('d', board.pieceRight)
+
+ 
         
     
 

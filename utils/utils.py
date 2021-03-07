@@ -1,22 +1,22 @@
 import keyboard
 
-class KeyPressedGame():
+class KeyPressedMove(): #tornar em um método mais inteligente
     def __init__(self):
         self._button_toggle = False
 
-    def keyPressedOnce(self, key):
+    def keyPressedMove(self, key: str, move) -> bool: #tornar em um método mais inteligente
         if keyboard.is_pressed(key):
             if self._button_toggle == False:
-                print("True")
+                move() # Lançamento da função de movimento passada no parâmetro
                 self._button_toggle = True
         else:
             self._button_toggle = False 
 
-class updateBoardCheck():
+class UpdateBoardCheck():
     def __init__(self):
         self._time = 0
 
-    def updateBoardCheck(self, mult) -> bool:
+    def updateBoardCheck(self, mult: float) -> bool:
         self._time += 1
         if self._time == 200000*mult:
             self._time = 0
