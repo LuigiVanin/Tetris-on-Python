@@ -24,6 +24,11 @@ def main():
   
         buttonLeft.keyPressedMove('a', board.pieceLeft) # ajustar movimentação
         buttonRight.keyPressedMove('d', board.pieceRight)
+        
+        
+        # x = choosePiece()
+        # print(x.format)
+
 
  
         

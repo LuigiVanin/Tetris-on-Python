@@ -2,6 +2,7 @@ import numpy as np
 from utils.utils import UpdateBoardCheck
 from copy import deepcopy
 from .pieces import Piece
+from utils.utils import choosePiece #provavel erro recursivo - models.pieces <-> utils.utils
 
 
 class Board():

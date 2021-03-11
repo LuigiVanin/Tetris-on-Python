@@ -1,4 +1,6 @@
 import keyboard
+import random
+from models.pieces import (PieceA, PieceB) # provavel erro recursivo - models.pieces <-> utils.utils
 
 class KeyPressedMove(): #tornar em um método mais inteligente
     def __init__(self):
@@ -24,6 +26,16 @@ class UpdateBoardCheck():
         else:
             return False
 
+def choosePiece() -> (PieceA, PieceB):
+    type = random.choice([1,2,3,4,5]) # quantidade de peças a de definir
+
+    if (type == 1):
+        return PieceA()
+    # elif (type == 2):
+    #     return PieceB()
+
+    else:
+        return PieceA()
 
 
 

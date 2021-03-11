@@ -1,4 +1,3 @@
-
 class Piece():
     def __init__(self):
         self.x = 4
@@ -27,4 +26,6 @@ class PieceA(Piece):
 class PieceB(Piece):
     def __init__(self):
         super.__init__()
+        self.format = [[1,1], [1,1]]
+    
   
