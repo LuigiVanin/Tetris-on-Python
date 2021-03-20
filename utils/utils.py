@@ -37,25 +37,3 @@ def choosePiece() -> (PieceA, PieceB):
     else:
         return PieceA()
 
-
-
-# def representation(matrix):
-#     x, y = x #<-- shape(x)
-#     representation = []
-#     for x in matrix:
-#         for y in x:
-#             if x == 0:
-#                 representaion.append('*')
-#             else:
-#                 representation.append(pience.representation)
-
-#     return representation
-
-# def pieceRotation(piece):
-#     pass
-
-# def createPiece():
-#     pieces = ['A', 'B', 'C', 'D', 'E']
-    
-#     if piece == 'A':
-#         return PieceA()

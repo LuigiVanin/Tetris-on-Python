@@ -19,12 +19,8 @@ class Board():
         self._mapPiece()
    
     def _mapPiece(self):
-    # try: # try para evitar extrapolação de índices da matriz
         self._tableClear()
         self.table[self.pieces[-1].y][self.pieces[-1].x] = self.pieces[-1].type 
-    # except IndexError: # tratamento de erro de extrapolação de índice, geralmente causado pelo fim do tabuleiro 
-        # print("fim do tabuleiro")
-        # raise IndexError 
     
     def pieceDrop(self):
         try: # try para evitar extrapolação de índices da matriz
@@ -43,6 +39,8 @@ class Board():
         except IndexError:
             self.pieces[-1].moveRight()
             self._mapPiece()
+        finally:
+            self.updateBoard()
 
     def pieceRight(self):
         try:
@@ -50,7 +48,10 @@ class Board():
             self._mapPiece()
         except IndexError:
             self.pieces[-1].moveLeft()
-            self._mapPiece() 
+            self._mapPiece()
+        finally:
+            self.updateBoard()
+            
 
     def getPieceCounter(self) -> int:
         return len(self.pieces)
@@ -63,41 +64,3 @@ class Board():
     def _tableClear(self):
         self.table = deepcopy(self.blank_table)
         
-        
-
-# class Piece():
-#     def __init__(self):
-#         self.x = 4
-#         self.y = 0
-#         self.type = 1
-
-#     def moveDown(self):
-#         self.y += 1
-
-# class PieceA(Piece):
-
-#     def __init__(self):
-#         super().__init__()
-#         self.format = [[1,1,1],[0,0,1]]
-
-#     def rotate(self):
-#         pass
-  
-
-# class board():
-#     def __init__(self):
-#         self.table = np.zeros(tetris_coordinations)
-#         self.blank_table = np.zeros(tetris_coordinations)
-
-#     def show():
-#         show_board(self.board)
-
-
-# class Piece():
-#     def __init__(self, piece_type):
-#         self.x_position = x_init
-#         self.y_position = y_init
-#         self.piece_type = piece_type
-
-    
-#     pass

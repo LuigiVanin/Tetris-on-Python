@@ -1,4 +1,3 @@
-#learn how to use event listener as e press
 from models.models import Board
 from utils.utils import KeyPressedMove
 from time import time
@@ -27,14 +26,8 @@ def main():
         
         
         # x = choosePiece()
-        # print(x.format)
-
-
- 
-        
-    
+        # print(x.format)   
 
 if __name__ == "__main__":
     main()    
         
-    # programação main
