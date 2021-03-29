@@ -1,4 +1,4 @@
 .vscode/
 nice_to_know.md
 test.py
-**/__pycache__/
+__pycache__/
