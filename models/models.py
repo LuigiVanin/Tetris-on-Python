@@ -15,12 +15,16 @@ class Board():
 
     def loadPiece(self):
         self.blank_table = deepcopy(self.table)
-        self.pieces.append(Piece())
+        self.pieces.append(choosePiece())
         self._mapPiece()
    
     def _mapPiece(self):
         self._tableClear()
-        self.table[self.pieces[-1].y][self.pieces[-1].x] = self.pieces[-1].type 
+
+        for i in range(len(self.pieces[-1].format)):
+            for j in range (len (self.pieces[-1].format[0])):
+                if self.pieces[-1].format[i][j] != 0:
+                    self.table[self.pieces[-1].y + i][self.pieces[-1].x + j] = self.pieces[-1].type
     
     def pieceDrop(self):
         try: # try para evitar extrapolação de índices da matriz
