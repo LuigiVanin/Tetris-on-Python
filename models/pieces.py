@@ -42,12 +42,12 @@ class PieceD(Piece):
 
     def __init__(self):
         super().__init__()
-        self.type = 2
+        self.type = 4
         self.format = [[1,1,1], [0,1,0]]
 
 class PieceE(Piece):
 
     def __init__(self):
         super().__init__()
-        self.type = 2
+        self.type = 5
         self.format = [[1,0], [1,1], [0, 1]]
