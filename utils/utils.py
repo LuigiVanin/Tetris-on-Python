@@ -2,7 +2,7 @@ import keyboard
 import random
 from models.pieces import (PieceA, PieceB) # provavel erro recursivo - models.pieces <-> utils.utils
 
-class KeyPressedMove(): #tornar em um método mais inteligente
+class KeyPressedMove(): 
     def __init__(self):
         self._button_toggle = False
 
