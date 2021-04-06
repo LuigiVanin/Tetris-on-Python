@@ -4,8 +4,8 @@ from time import time
 
 def main():
 
-    buttonLeft = KeyPressedMove()
-    buttonRight = KeyPressedMove()
+    buttonLeft = KeyPressedMove('a')
+    buttonRight = KeyPressedMove('d')
 
     board = Board()
 
@@ -16,17 +16,12 @@ def main():
     print("while initialize")
     while True:
 
-        if board.updateBoardCheck.updateBoardCheck(1) == True:
+        if board.updateBoardCheck.updateBoardCheck(0.5) == True:
             print("worked")
             board.pieceDrop()
-            board.updateBoard()
   
-        buttonLeft.keyPressedMove('a', board.pieceLeft) # ajustar movimentação
-        buttonRight.keyPressedMove('d', board.pieceRight)
-        
-        
-        # x = choosePiece()
-        # print(x.format)   
+        buttonLeft.keyPressedMove(board.pieceLeft)
+        buttonRight.keyPressedMove(board.pieceRight) 
 
 if __name__ == "__main__":
     main()    

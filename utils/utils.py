@@ -5,11 +5,12 @@ from models.pieces import (
     ) # provavel erro recursivo - models.pieces <-> utils.utils
 
 class KeyPressedMove(): 
-    def __init__(self):
+    def __init__(self, key : str):
         self._button_toggle = False
+        self.key = key
 
-    def keyPressedMove(self, key: str, move) -> bool: #tornar em um método mais inteligente
-        if keyboard.is_pressed(key):
+    def keyPressedMove(self, move) -> bool: #tornar em um método mais inteligente
+        if keyboard.is_pressed(self.key):
             if self._button_toggle == False:
                 move() # Lançamento da função de movimento passada no parâmetro
                 self._button_toggle = True
@@ -45,6 +46,3 @@ def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
 
     else:
         return PieceE()
-
-
-

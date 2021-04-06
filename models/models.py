@@ -1,9 +1,7 @@
 import numpy as np
 from utils.utils import UpdateBoardCheck
 from copy import deepcopy
-from .pieces import Piece
-from utils.utils import choosePiece #provavel erro recursivo - models.pieces <-> utils.utils
-
+from utils.utils import choosePiece
 
 class Board():
     def __init__(self):
@@ -17,6 +15,9 @@ class Board():
         self.blank_table = deepcopy(self.table)
         self.pieces.append(choosePiece())
         self._mapPiece()
+
+    def _tableClear(self):
+        self.table = deepcopy(self.blank_table)
    
     def _mapPiece(self):
         self._tableClear()
@@ -34,17 +35,21 @@ class Board():
             self.pieces[-1].moveUp()
             self._mapPiece()
             self.loadPiece()
+        finally:
+            self.showBoard()
     
     def pieceLeft(self):
         try:
             self.pieces[-1].moveLeft() # caso x extrapole para a direita assumirá a posição [-1] que é igual
                                        # ao final do tabuleiro e não um erro, gerando "teletransporte"
             self._mapPiece()
+            if self.pieces[-1].x < 0 :
+                raise IndexError
         except IndexError:
             self.pieces[-1].moveRight()
             self._mapPiece()
         finally:
-            self.updateBoard()
+            self.showBoard()
 
     def pieceRight(self):
         try:
@@ -54,17 +59,14 @@ class Board():
             self.pieces[-1].moveLeft()
             self._mapPiece()
         finally:
-            self.updateBoard()
+            self.showBoard()
             
 
     def getPieceCounter(self) -> int:
         return len(self.pieces)
 
-    def updateBoard(self):
+    def showBoard(self):
         print('\n' * 20)
         for i in self.table:
             print(*i, sep=" ")
-
-    def _tableClear(self):
-        self.table = deepcopy(self.blank_table)
-        
+    
