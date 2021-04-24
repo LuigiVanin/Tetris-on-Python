@@ -1,8 +1,7 @@
 import keyboard
 import random
-from models.pieces import (
-    PieceA, PieceB, PieceC, PieceD, PieceE
-    ) # provavel erro recursivo - models.pieces <-> utils.utils
+from models.pieces import * 
+from typing import List, Optional
 
 class KeyPressedMove(): 
     def __init__(self, key : str):
@@ -46,3 +45,27 @@ def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
 
     else:
         return PieceE()
+
+def printFormat(format : Optional[Piece], endrow : str = "\n", end : str = "\n"):
+    if type(format) != list:
+        format = list(format)
+    for i in range(len(format)):
+        for j in range(len(format[0])):
+            print(format[i][j], end=", ")
+        print(end=endrow)
+    print(end=end)
+
+def matrixSize(matrix):
+    return (len(matrix), len(matrix[0]))
+
+def rotateMatrix(matrix : List[List[int]]):
+    final = []
+    tmp = []
+    row, column = matrixSize(matrix)
+    for j in range(column - 1, -1, -1):
+        for i in range(row):
+            tmp.append(matrix[i][j])  
+        final.append(tmp)
+        tmp = []
+
+    return final

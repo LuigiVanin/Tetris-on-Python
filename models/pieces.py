@@ -1,7 +1,10 @@
+from typing import List
+
 class Piece():
     def __init__(self):
         self.x = 4
         self.y = 0
+        self.format = []
 
     def moveDown(self):
         self.y += 1
@@ -15,6 +18,20 @@ class Piece():
 
     def moveRight(self): 
         self.x += 1
+
+    def startPosition(self, vec : List[int]):
+        if len(vec) == 2 and (self.x == 4 and self.y == 0):
+            self.x = vec[0]
+            self.y = vec[1]
+        else:
+            raise IndexError
+
+    def __str__(self):
+        return "({}, {})".format(self.x, self.y)
+
+    def __iter__(self):
+        for i in self.format:
+            yield i
 
 class PieceA(Piece):
 

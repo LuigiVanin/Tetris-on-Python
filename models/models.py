@@ -11,11 +11,6 @@ class Board():
         self.updateBoardCheck = UpdateBoardCheck()
         self.pieces = []
 
-    def loadPiece(self):
-        self.blank_table = deepcopy(self.table)
-        self.pieces.append(choosePiece())
-        self._mapPiece()
-
     def _tableClear(self):
         self.table = deepcopy(self.blank_table)
    
@@ -27,10 +22,26 @@ class Board():
                 if self.pieces[-1].format[i][j] != 0:
                     self.table[self.pieces[-1].y + i][self.pieces[-1].x + j] = self.pieces[-1].type
     
+    def colisionCheck(self) -> bool:
+        for i in range(len(self.pieces[-1].format)):
+            for j in range (len (self.pieces[-1].format[0])):
+                if(self.blank_table[self.pieces[-1].y + i][self.pieces[-1].x + j] != 0):
+                    if self.pieces[-1].format[i][j] != 0:
+                        return True
+
+        return False   
+
+    def loadPiece(self):
+        self.blank_table = deepcopy(self.table)
+        self.pieces.append(choosePiece())
+        self._mapPiece()
+
     def pieceDrop(self):
         try: # try para evitar extrapolação de índices da matriz
             self.pieces[-1].moveDown()
             self._mapPiece()
+            if self.colisionCheck():
+                raise IndexError
         except IndexError: # tratamento de erro de extrapolação de índice, geralmente causado pelo fim do tabuleiro 
             self.pieces[-1].moveUp()
             self._mapPiece()
@@ -45,6 +56,9 @@ class Board():
             self._mapPiece()
             if self.pieces[-1].x < 0 :
                 raise IndexError
+
+            if self.colisionCheck():
+                raise IndexError
         except IndexError:
             self.pieces[-1].moveRight()
             self._mapPiece()
@@ -55,6 +69,9 @@ class Board():
         try:
             self.pieces[-1].moveRight()
             self._mapPiece()
+
+            if self.colisionCheck():
+                raise IndexError
         except IndexError:
             self.pieces[-1].moveLeft()
             self._mapPiece()
@@ -69,4 +86,4 @@ class Board():
         print('\n' * 20)
         for i in self.table:
             print(*i, sep=" ")
-    
+    #    print(self.colisionCheck())
