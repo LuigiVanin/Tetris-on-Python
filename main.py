@@ -1,6 +1,6 @@
-from models.models import Board
-from utils.utils import KeyPressedMove
-from time import time
+from modules.models.models import Board
+from modules.utils.utils import KeyPressedMove
+
 
 def main():
 

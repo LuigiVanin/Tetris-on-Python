@@ -2,3 +2,6 @@
 nice_to_know.md
 test.py
 __pycache__/
+venv/
+tetris.egg-info/
+.idea/

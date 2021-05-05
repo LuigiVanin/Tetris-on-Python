@@ -1,7 +1,6 @@
-import keyboard
-import random
-from models.pieces import * 
-from typing import List, Optional
+from config import *
+from modules.models.pieces import * 
+# from ..models import *
 
 class KeyPressedMove(): 
     def __init__(self, key : str):

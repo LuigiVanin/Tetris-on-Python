@@ -33,6 +33,8 @@ class Piece():
         for i in self.format:
             yield i
 
+
+
 class PieceA(Piece):
 
     def __init__(self):

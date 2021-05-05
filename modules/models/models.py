@@ -1,7 +1,7 @@
-import numpy as np
-from utils.utils import UpdateBoardCheck
-from copy import deepcopy
-from utils.utils import choosePiece
+from config import *
+from modules.utils.utils import UpdateBoardCheck
+from modules.utils.utils import choosePiece
+# from ..utils import *
 
 class Board():
     def __init__(self):
@@ -78,6 +78,8 @@ class Board():
         finally:
             self.showBoard()
             
+    def endGameCheck(self):
+        pass
 
     def getPieceCounter(self) -> int:
         return len(self.pieces)
