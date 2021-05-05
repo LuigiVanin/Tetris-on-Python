@@ -1,5 +1,5 @@
 from config import *
-# from modules.utils.utils import UpdateBoardCheck
+# from modules.utils.utils import Check
 # from modules.utils.utils import choosePiece
 from ..utils import *
 
@@ -8,7 +8,7 @@ class Board():
         self.size = (16, 10)
         self.table = np.zeros(self.size, np.int8)
         self.blank_table = deepcopy(self.table)
-        self.updateBoardCheck = UpdateBoardCheck()
+        self.updateBoardCheck = Check()
         self.pieces = []
 
     def _tableClear(self):
@@ -32,6 +32,7 @@ class Board():
         return False   
 
     def loadPiece(self):
+        self.checkRow()
         self.blank_table = deepcopy(self.table)
         self.pieces.append(choosePiece())
         self._mapPiece()
@@ -110,6 +111,25 @@ class Board():
             
         finally:
             self.showBoard()
+
+    def checkRow(self):
+        row = self.size[0]
+        column = self.size[1]
+        destroy = False
+        for i in range(row):
+            destroy = True
+            for j in range(column):
+                if self.table[i][j] == 0 :
+                    destroy = False
+                    break
+            if destroy == True:
+                self.destroyRow(i)
+
+    def destroyRow(self, row : int):
+        for i in range(row, -1, -1):
+            if i != 0:
+                tmp = self.table[i - 1]
+                self.table[i] = tmp
 
     def showBoard(self):
         print('\n' * 20)

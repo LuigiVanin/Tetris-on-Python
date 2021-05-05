@@ -2,30 +2,44 @@ from config import *
 from modules.models.pieces import * 
 # from ..models import *
 
-class KeyPressedMove(): 
+class KeyBoardMove(): 
     def __init__(self, key : str):
         self._button_toggle = False
         self.key = key
 
-    def keyPressedMove(self, move) -> bool: #tornar em um método mais inteligente
+    def PressedMove(self, move) -> bool:
         if keyboard.is_pressed(self.key):
             if self._button_toggle == False:
-                move() # Lançamento da função de movimento passada no parâmetro
+                move() 
                 self._button_toggle = True
         else:
             self._button_toggle = False 
 
-class UpdateBoardCheck():
+    def HoldMove(self) -> bool:
+        return keyboard.is_pressed(self.key)
+
+class Check():
     def __init__(self):
         self._time = 0
+        self._speed = 0
+        self.mult = 0.3
 
-    def updateBoardCheck(self, mult: float) -> bool:
-        self._time += 1
-        if self._time == 200000*mult:
-            self._time = 0
-            return True
-        else:
-            return False
+    def timeCheck(self, speed : bool = False) -> bool:
+        if speed == False:
+            self._time += 1
+            if self._time == 200000*self.mult:
+                self._time = 0
+                return True
+            else:
+                return False
+        else: 
+            self._speed += 1
+            if self._speed == 200000*(self.mult/10):
+                self._speed = 0
+                return True
+            else:
+                return False
+
 
 def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
     type = random.choice([1,2,3,4,5]) # quantidade de peças a de definir

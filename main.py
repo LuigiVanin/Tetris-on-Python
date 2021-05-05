@@ -1,13 +1,14 @@
 from modules.models.models import Board
-from modules.utils.utils import KeyPressedMove
-
+from modules.utils.utils import KeyBoardMove
+import keyboard
 
 def main():
 
-    buttonLeft = KeyPressedMove('a')
-    buttonRight = KeyPressedMove('d')
-    buttonRotate = KeyPressedMove('j')
-    buttonUnRotate = KeyPressedMove('k')
+    buttonLeft = KeyBoardMove('a')
+    buttonRight = KeyBoardMove('d')
+    buttonRotate = KeyBoardMove('j')
+    buttonUnRotate = KeyBoardMove('k')
+    buttonSpeed = KeyBoardMove('s')
 
     board = Board()
 
@@ -17,15 +18,14 @@ def main():
 
     print("while initialize")
     while True:
-
-        if board.updateBoardCheck.updateBoardCheck(0.5) == True:
+        if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove()):
             print("worked")
             board.pieceDrop()
   
-        buttonLeft.keyPressedMove(board.pieceLeft)
-        buttonRight.keyPressedMove(board.pieceRight) 
-        buttonRotate.keyPressedMove(board.pieceRotate)
-        buttonUnRotate.keyPressedMove(board.pieceUnRotate)
+        buttonLeft.PressedMove(board.pieceLeft)
+        buttonRight.PressedMove(board.pieceRight) 
+        buttonRotate.PressedMove(board.pieceRotate)
+        buttonUnRotate.PressedMove(board.pieceUnRotate)
 
 if __name__ == "__main__":
     main()    
