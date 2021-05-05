@@ -33,15 +33,16 @@ class Piece():
         for i in self.format:
             yield i
 
-
-
 class PieceA(Piece):
 
     def __init__(self):
         super().__init__()
         self.center_pos = (1,1)
         self.type = 1
-        self.format = [[1,0], [1,0], [1,0], [1,1]]
+        self.format = [[1,0],
+                       [1,0],
+                       [1,0],
+                       [1,1]]
 
 class PieceB(Piece):
 
@@ -49,7 +50,8 @@ class PieceB(Piece):
         super().__init__()
         self.center_pos = (1,1)
         self.type = 2
-        self.format = [[1,1], [1,1]]
+        self.format = [[1,1],
+                       [1,1]]
 
 class PieceC(Piece):
 
@@ -65,7 +67,8 @@ class PieceD(Piece):
         super().__init__()
         self.center_pos = (1,1)
         self.type = 4
-        self.format = [[1,1,1], [0,1,0]]
+        self.format = [[1,1,1], 
+                       [0,1,0]]
 
 class PieceE(Piece):
 
@@ -73,4 +76,6 @@ class PieceE(Piece):
         super().__init__()
         self.center_pos = (1,1)
         self.type = 5
-        self.format = [[1,0], [1,1], [0, 1]]
+        self.format = [[1,0],
+                       [1,1],
+                       [0, 1]]

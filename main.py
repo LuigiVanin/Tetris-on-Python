@@ -13,9 +13,6 @@ def main():
 
     board.loadPiece()
 
-    print(board.size)
-
-    print("while initialize")
     while True:
         if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove()):
             board.pieceDrop()

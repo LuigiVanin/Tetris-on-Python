@@ -22,5 +22,3 @@ def printBoard(table: ndarray):
                 else:
                     print('\x1b[%sm %s \x1b[0m' % ("0;37;41" ,"" ), end="")
             print()
-            
-            

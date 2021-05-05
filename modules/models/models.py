@@ -30,19 +30,26 @@ class Board():
 
         return False   
 
+    def gameOverCheck(self):
+        if self.colisionCheck():
+            exit()
+        else:
+            pass
+
     def loadPiece(self):
         self.checkRow()
         self.blank_table = deepcopy(self.table)
         self.pieces.append(choosePiece())
+        self.gameOverCheck()
         self._mapPiece()
 
     def pieceDrop(self):
-        try: # try para evitar extrapolação de índices da matriz
+        try: 
             self.pieces[-1].moveDown()
             self._mapPiece()
             if self.colisionCheck():
                 raise IndexError
-        except IndexError: # tratamento de erro de extrapolação de índice, geralmente causado pelo fim do tabuleiro 
+        except IndexError:  
             self.pieces[-1].moveUp()
             self._mapPiece()
             self.loadPiece()
@@ -51,8 +58,7 @@ class Board():
     
     def pieceLeft(self):
         try:
-            self.pieces[-1].moveLeft() # caso x extrapole para a direita assumirá a posição [-1] que é igual
-                                       # ao final do tabuleiro e não um erro, gerando "teletransporte"
+            self.pieces[-1].moveLeft() 
             self._mapPiece()
             if self.pieces[-1].x < 0 :
                 raise IndexError
