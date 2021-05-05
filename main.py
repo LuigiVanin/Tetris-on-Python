@@ -1,6 +1,5 @@
 from modules.models.models import Board
 from modules.utils.utils import KeyBoardMove
-import keyboard
 
 def main():
 
@@ -18,8 +17,7 @@ def main():
 
     print("while initialize")
     while True:
-        if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove()):
-            print("worked")
+        if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove):
             board.pieceDrop()
   
         buttonLeft.PressedMove(board.pieceLeft)

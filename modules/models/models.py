@@ -1,7 +1,6 @@
 from config import *
-# from modules.utils.utils import Check
-# from modules.utils.utils import choosePiece
 from ..utils import *
+from ..view import *
 
 class Board():
     def __init__(self):
@@ -132,7 +131,4 @@ class Board():
                 self.table[i] = tmp
 
     def showBoard(self):
-        print('\n' * 20)
-        for i in self.table:
-            print(*i, sep=" ")
-    #    print(self.colisionCheck())
+        printBoard(self.table)
