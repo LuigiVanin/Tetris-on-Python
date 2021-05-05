@@ -1,7 +1,7 @@
 from config import *
-from modules.utils.utils import UpdateBoardCheck
-from modules.utils.utils import choosePiece
-# from ..utils import *
+# from modules.utils.utils import UpdateBoardCheck
+# from modules.utils.utils import choosePiece
+from ..utils import *
 
 class Board():
     def __init__(self):
@@ -83,6 +83,33 @@ class Board():
 
     def getPieceCounter(self) -> int:
         return len(self.pieces)
+
+    def pieceUnRotate(self):
+        try:
+            self.pieces[-1].format = unRotateMatrix(self.pieces[-1].format)
+            self._mapPiece()
+            if self.colisionCheck():
+                raise IndexError
+        except IndexError:
+            self.pieces[-1].format = rotateMatrix(self.pieces[-1].format)
+            self._mapPiece()
+            
+        finally:
+            self.showBoard()
+
+    def pieceRotate(self):
+        try:
+            self.pieces[-1].format = rotateMatrix(self.pieces[-1].format)
+            self._mapPiece()
+            if self.colisionCheck():
+                raise IndexError
+
+        except IndexError:
+            self.pieces[-1].format = unRotateMatrix(self.pieces[-1].format)
+            self._mapPiece()
+            
+        finally:
+            self.showBoard()
 
     def showBoard(self):
         print('\n' * 20)

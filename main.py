@@ -6,6 +6,8 @@ def main():
 
     buttonLeft = KeyPressedMove('a')
     buttonRight = KeyPressedMove('d')
+    buttonRotate = KeyPressedMove('j')
+    buttonUnRotate = KeyPressedMove('k')
 
     board = Board()
 
@@ -22,6 +24,8 @@ def main():
   
         buttonLeft.keyPressedMove(board.pieceLeft)
         buttonRight.keyPressedMove(board.pieceRight) 
+        buttonRotate.keyPressedMove(board.pieceRotate)
+        buttonUnRotate.keyPressedMove(board.pieceUnRotate)
 
 if __name__ == "__main__":
     main()    

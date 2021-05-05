@@ -57,7 +57,7 @@ def printFormat(format : Optional[Piece], endrow : str = "\n", end : str = "\n")
 def matrixSize(matrix):
     return (len(matrix), len(matrix[0]))
 
-def rotateMatrix(matrix : List[List[int]]):
+def unRotateMatrix(matrix : List[List[int]]):
     final = []
     tmp = []
     row, column = matrixSize(matrix)
@@ -67,4 +67,15 @@ def rotateMatrix(matrix : List[List[int]]):
         final.append(tmp)
         tmp = []
 
+    return final
+
+def rotateMatrix(matrix : List[List[int]]):
+    final = []
+    tmp = []
+    row, column = matrixSize(matrix)
+    for j in range(column):
+        for i in range(row - 1, -1, -1):
+            tmp.append(matrix[i][j])  
+        final.append(tmp)
+        tmp = []
     return final
