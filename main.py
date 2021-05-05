@@ -17,7 +17,7 @@ def main():
 
     print("while initialize")
     while True:
-        if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove):
+        if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove()):
             board.pieceDrop()
   
         buttonLeft.PressedMove(board.pieceLeft)
