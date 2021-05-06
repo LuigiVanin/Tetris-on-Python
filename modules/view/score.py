@@ -10,7 +10,7 @@ def printBoard(table: ndarray):
         for i in table:
             for item in i:
                 if item == 0:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;47" ,"" ), end="")
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;40" ,"" ), end="") #branco = "0;37;47"
                 elif item == 1:
                     print('\x1b[%sm %s \x1b[0m' % ("0;37;45" ,"" ), end="")
                 elif item == 2:
