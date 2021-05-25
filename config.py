@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List, Optional, Tuple, Callable
 import keyboard
 import random
 from copy import deepcopy

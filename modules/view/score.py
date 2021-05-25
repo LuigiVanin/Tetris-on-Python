@@ -5,7 +5,7 @@ class score():
     def __init__(self):
         pass
 
-def printBoard(table: ndarray):
+def printBoard(table: ndarray) -> None:
         print('\n' * 20)
         for i in table:
             for item in i:

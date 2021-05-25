@@ -1,19 +1,22 @@
+# pylint: disable=unused-wildcard-import
 from config import *
 from ..utils import *
 from ..view import *
 
 class Board():
     def __init__(self):
-        self.size = (16, 10)
+        self.size: Tuple[int] = (16, 10)
         self.table = np.zeros(self.size, np.int8)
         self.blank_table = deepcopy(self.table)
         self.updateBoardCheck = Check()
-        self.pieces = []
+        self.pieces: List = []
 
-    def _tableClear(self):
+
+    def _tableClear(self) -> None:
         self.table = deepcopy(self.blank_table)
    
-    def _mapPiece(self):
+
+    def _mapPiece(self) -> None:
         self._tableClear()
 
         for i in range(len(self.pieces[-1].format)):
@@ -21,6 +24,7 @@ class Board():
                 if self.pieces[-1].format[i][j] != 0:
                     self.table[self.pieces[-1].y + i][self.pieces[-1].x + j] = self.pieces[-1].type
     
+
     def colisionCheck(self) -> bool:
         for i in range(len(self.pieces[-1].format)):
             for j in range (len (self.pieces[-1].format[0])):
@@ -30,20 +34,22 @@ class Board():
 
         return False   
 
-    def gameOverCheck(self):
+
+    def gameOverCheck(self) -> None:
         if self.colisionCheck():
             exit()
         else:
             pass
 
-    def loadPiece(self):
+
+    def loadPiece(self) -> None:
         self.checkRow()
         self.blank_table = deepcopy(self.table)
         self.pieces.append(choosePiece())
         self.gameOverCheck()
         self._mapPiece()
 
-    def pieceDrop(self):
+    def pieceDrop(self) -> None:
         try: 
             self.pieces[-1].moveDown()
             self._mapPiece()
@@ -56,7 +62,7 @@ class Board():
         finally:
             self.showBoard()
     
-    def pieceLeft(self):
+    def pieceLeft(self) -> None:
         try:
             self.pieces[-1].moveLeft() 
             self._mapPiece()
@@ -71,7 +77,8 @@ class Board():
         finally:
             self.showBoard()
 
-    def pieceRight(self):
+
+    def pieceRight(self) -> None:
         try:
             self.pieces[-1].moveRight()
             self._mapPiece()
@@ -83,14 +90,13 @@ class Board():
             self._mapPiece()
         finally:
             self.showBoard()
-            
-    def endGameCheck(self):
-        pass
+
 
     def getPieceCounter(self) -> int:
         return len(self.pieces)
 
-    def pieceUnRotate(self):
+
+    def pieceUnRotate(self) -> None:
         try:
             self.pieces[-1].format = unRotateMatrix(self.pieces[-1].format)
             self._mapPiece()
@@ -103,7 +109,8 @@ class Board():
         finally:
             self.showBoard()
 
-    def pieceRotate(self):
+
+    def pieceRotate(self) -> None:
         try:
             self.pieces[-1].format = rotateMatrix(self.pieces[-1].format)
             self._mapPiece()
@@ -117,7 +124,8 @@ class Board():
         finally:
             self.showBoard()
 
-    def checkRow(self):
+
+    def checkRow(self) -> None:
         row = self.size[0]
         column = self.size[1]
         destroy = False
@@ -130,11 +138,13 @@ class Board():
             if destroy == True:
                 self.destroyRow(i)
 
-    def destroyRow(self, row : int):
+
+    def destroyRow(self, row : int) -> None:
         for i in range(row, -1, -1):
             if i != 0:
                 tmp = self.table[i - 1]
                 self.table[i] = tmp
 
-    def showBoard(self):
+
+    def showBoard(self) -> None:
         printBoard(self.table)

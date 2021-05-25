@@ -7,7 +7,7 @@ class KeyBoardMove():
         self._button_toggle = False
         self.key = key
 
-    def PressedMove(self, move) -> bool:
+    def PressedMove(self, move: Callable) -> bool:
         if keyboard.is_pressed(self.key):
             if self._button_toggle == False:
                 move() 
@@ -18,11 +18,12 @@ class KeyBoardMove():
     def HoldMove(self) -> bool:
         return keyboard.is_pressed(self.key)
 
+
 class Check():
     def __init__(self):
         self._time = 0
         self._speed = 0
-        self.mult = 0.3
+        self.mult: float = 0.3
 
     def timeCheck(self, speed : bool = False) -> bool:
         if speed == False:
@@ -59,7 +60,11 @@ def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
     else:
         return PieceE()
 
-def printFormat(format : Optional[Piece], endrow : str = "\n", end : str = "\n"):
+
+def printFormat(format : Optional[Piece],
+                endrow : str = "\n", 
+                end : str = "\n") -> None:
+
     if type(format) != list:
         format = list(format)
     for i in range(len(format)):
@@ -68,10 +73,11 @@ def printFormat(format : Optional[Piece], endrow : str = "\n", end : str = "\n")
         print(end=endrow)
     print(end=end)
 
-def matrixSize(matrix):
+
+def matrixSize(matrix: List[List[Optional[int]]]) -> Tuple[int, int]:
     return (len(matrix), len(matrix[0]))
 
-def unRotateMatrix(matrix : List[List[int]]):
+def unRotateMatrix(matrix : List[List[Optional[int]]]) -> List[List[Optional[int]]]:
     final = []
     tmp = []
     row, column = matrixSize(matrix)
@@ -83,7 +89,7 @@ def unRotateMatrix(matrix : List[List[int]]):
 
     return final
 
-def rotateMatrix(matrix : List[List[int]]):
+def rotateMatrix(matrix : List[List[Optional[int]]]) -> List[List[Optional[int]]]:
     final = []
     tmp = []
     row, column = matrixSize(matrix)
