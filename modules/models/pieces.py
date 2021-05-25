@@ -2,24 +2,24 @@ from typing import List
 
 class Piece():
     def __init__(self):
-        self.x = 4
-        self.y = 0
-        self.format = []
+        self.x: int = 4
+        self.y: int = 0
+        self.format: List = []
 
-    def moveDown(self):
+    def moveDown(self) -> None:
         self.y += 1
 
-    def moveUp(self):
+    def moveUp(self) -> None:
         self.y -= 1
 
-    def moveLeft(self):
+    def moveLeft(self) -> None:
 #        if self.x - 1 != -1:
         self.x -= 1
 
-    def moveRight(self): 
+    def moveRight(self) -> None: 
         self.x += 1
 
-    def startPosition(self, vec : List[int]):
+    def startPosition(self, vec : List[int]) -> None:
         if len(vec) == 2 and (self.x == 4 and self.y == 0):
             self.x = vec[0]
             self.y = vec[1]
