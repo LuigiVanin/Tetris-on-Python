@@ -4,7 +4,7 @@ class Piece():
     def __init__(self):
         self.x: int = 4
         self.y: int = 0
-        self.format: List = []
+        self.format: List[List[int]] = []
 
     def moveDown(self) -> None:
         self.y += 1
