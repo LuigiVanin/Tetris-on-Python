@@ -1,4 +1,2 @@
 keyboard==0.13.5
 numpy==1.20.2
-pkg-resources==0.0.0
--e git+https://github.com/LuigiVanin/tetris.git@8e2f10edacd25c2cc8aa169f622d377d80adf35b#egg=tetris
