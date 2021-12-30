@@ -99,3 +99,21 @@ def rotateMatrix(matrix : List[List[Optional[int]]]) -> List[List[Optional[int]]
         final.append(tmp)
         tmp = []
     return final
+
+def printBoard(table: ndarray) -> None:
+        print('\n' * 20)
+        for i in table:
+            for item in i:
+                if item == 0:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;40" ,"" ), end="") #branco = "0;37;47"
+                elif item == 1:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;45" ,"" ), end="")
+                elif item == 2:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;44" ,"" ), end="")
+                elif item == 3:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;42" ,"" ), end="")
+                elif item == 4:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;43" ,"" ), end="")
+                else:
+                    print('\x1b[%sm %s \x1b[0m' % ("0;37;41" ,"" ), end="")
+            print()

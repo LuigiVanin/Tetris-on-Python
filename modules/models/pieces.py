@@ -13,7 +13,6 @@ class Piece():
         self.y -= 1
 
     def moveLeft(self) -> None:
-#        if self.x - 1 != -1:
         self.x -= 1
 
     def moveRight(self) -> None: 

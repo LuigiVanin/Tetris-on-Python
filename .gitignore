@@ -2,6 +2,10 @@
 nice_to_know.md
 test.py
 __pycache__/
+__init__.pyc
 venv/
 tetris.egg-info/
 .idea/
+*.save
+view/
+setup.py

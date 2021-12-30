@@ -1,7 +1,6 @@
 # pylint: disable=unused-wildcard-import
 from config import *
 from ..utils import *
-from ..view import *
 
 class Board():
     def __init__(self):
