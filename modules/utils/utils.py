@@ -1,19 +1,21 @@
+from typing import Union
 from config import *
-from modules.models.pieces import * 
+from modules.models.pieces import *
 # from ..models import *
 
-class KeyBoardMove(): 
-    def __init__(self, key : str):
+
+class KeyBoardMove():
+    def __init__(self, key: str):
         self._button_toggle = False
         self.key = key
 
     def PressedMove(self, move: Callable) -> bool:
         if keyboard.is_pressed(self.key):
             if self._button_toggle == False:
-                move() 
+                move()
                 self._button_toggle = True
         else:
-            self._button_toggle = False 
+            self._button_toggle = False
 
     def HoldMove(self) -> bool:
         return keyboard.is_pressed(self.key)
@@ -25,7 +27,7 @@ class Check():
         self._speed = 0
         self.mult: float = 0.3
 
-    def timeCheck(self, speed : bool = False) -> bool:
+    def timeCheck(self, speed: bool = False) -> bool:
         if speed == False:
             self._time += 1
             if self._time == 200000*self.mult:
@@ -33,7 +35,7 @@ class Check():
                 return True
             else:
                 return False
-        else: 
+        else:
             self._speed += 1
             if self._speed == 200000*(self.mult/10):
                 self._speed = 0
@@ -42,12 +44,12 @@ class Check():
                 return False
 
 
-def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
-    type = random.choice([1,2,3,4,5]) # quantidade de peças a de definir
+def choosePiece() -> Union[PieceA, PieceB, PieceC, PieceD, PieceE]:
+    type = random.choice([1, 2, 3, 4, 5])  # quantidade de peças a de definir
     print(type)
     if (type == 1):
         return PieceA()
-    
+
     elif (type == 2):
         return PieceB()
 
@@ -61,9 +63,9 @@ def choosePiece() -> (PieceA, PieceB, PieceC, PieceD, PieceE):
         return PieceE()
 
 
-def printFormat(format : Optional[Piece],
-                endrow : str = "\n", 
-                end : str = "\n") -> None:
+def printFormat(format: Optional[Piece],
+                endrow: str = "\n",
+                end: str = "\n") -> None:
 
     if type(format) != list:
         format = list(format)
@@ -77,43 +79,47 @@ def printFormat(format : Optional[Piece],
 def matrixSize(matrix: List[List[Optional[int]]]) -> Tuple[int, int]:
     return (len(matrix), len(matrix[0]))
 
-def unRotateMatrix(matrix : List[List[Optional[int]]]) -> List[List[Optional[int]]]:
+
+def unRotateMatrix(matrix: List[List[Optional[int]]]) -> List[List[Optional[int]]]:
     final = []
     tmp = []
     row, column = matrixSize(matrix)
     for j in range(column - 1, -1, -1):
         for i in range(row):
-            tmp.append(matrix[i][j])  
+            tmp.append(matrix[i][j])
         final.append(tmp)
         tmp = []
 
     return final
 
-def rotateMatrix(matrix : List[List[Optional[int]]]) -> List[List[Optional[int]]]:
+
+def rotateMatrix(matrix: List[List[Optional[int]]]) -> List[List[Optional[int]]]:
     final = []
     tmp = []
     row, column = matrixSize(matrix)
     for j in range(column):
         for i in range(row - 1, -1, -1):
-            tmp.append(matrix[i][j])  
+            tmp.append(matrix[i][j])
         final.append(tmp)
         tmp = []
     return final
 
+
 def printBoard(table: ndarray) -> None:
-        print('\n' * 20)
-        for i in table:
-            for item in i:
-                if item == 0:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;40" ,"" ), end="") #branco = "0;37;47"
-                elif item == 1:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;45" ,"" ), end="")
-                elif item == 2:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;44" ,"" ), end="")
-                elif item == 3:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;42" ,"" ), end="")
-                elif item == 4:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;43" ,"" ), end="")
-                else:
-                    print('\x1b[%sm %s \x1b[0m' % ("0;37;41" ,"" ), end="")
-            print()
+    print('\n' * 20)
+    for i in table:
+        for item in i:
+            if item == 0:
+                print('\x1b[%sm %s \x1b[0m' %
+                      ("0;37;40", ""), end="")  # branco = "0;37;47"
+            elif item == 1:
+                print('\x1b[%sm %s \x1b[0m' % ("0;37;45", ""), end="")
+            elif item == 2:
+                print('\x1b[%sm %s \x1b[0m' % ("0;37;44", ""), end="")
+            elif item == 3:
+                print('\x1b[%sm %s \x1b[0m' % ("0;37;42", ""), end="")
+            elif item == 4:
+                print('\x1b[%sm %s \x1b[0m' % ("0;37;43", ""), end="")
+            else:
+                print('\x1b[%sm %s \x1b[0m' % ("0;37;41", ""), end="")
+        print()

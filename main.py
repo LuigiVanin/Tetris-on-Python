@@ -1,5 +1,6 @@
-from modules.models.models import Board
+from modules.models.board import Board
 from modules.utils.utils import KeyBoardMove
+
 
 def main():
 
@@ -16,12 +17,12 @@ def main():
     while True:
         if board.updateBoardCheck.timeCheck(buttonSpeed.HoldMove()):
             board.pieceDrop()
-  
+
         buttonLeft.PressedMove(board.pieceLeft)
-        buttonRight.PressedMove(board.pieceRight) 
+        buttonRight.PressedMove(board.pieceRight)
         buttonRotate.PressedMove(board.pieceRotate)
         buttonUnRotate.PressedMove(board.pieceUnRotate)
 
+
 if __name__ == "__main__":
-    main()    
-        
+    main()

@@ -1,2 +1,2 @@
 from .pieces import *
-from .models import *
+from .board import *
