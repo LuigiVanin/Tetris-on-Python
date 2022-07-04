@@ -60,8 +60,10 @@ sudo python3 main.py
 
 ## Como funciona ❓
 
-Para fazer o Tetris funcionar é utilizado o espaço vazio com uma calaração diferente para que seja possível representar blocos e o fundo, a realização da curtomização das cores se usar os código ANSI de cores([Link](https://raccoon.ninja/pt/dev-pt/tabela-de-cores-ansi-python/)).
+Para fazer o Tetris funcionar é utilizado o espaço vazio com uma calaração diferente para que seja possível representar blocos e o fundo, a realização da curtomização das cores se usa dos código ANSI de cores([Link](https://raccoon.ninja/pt/dev-pt/tabela-de-cores-ansi-python/)).
+
 A atualização da tela, na verdade, não é atualização dos pixels em sí, na verdade o que o código faz é printar um novo tabuleiro abaixo do anterior, porém com muito espaço entre eles, dando a impressão de uma nova tela. Há melhores maneiras de fazer isso? Sim, como por exemplo utilizando a biblioteca nativa do python [curses](https://pypi.org/project/windows-curses/), mas optei por uma implementação mais "bruta" usando prints rsrsrs.
+
 Para gerar o tabuleiro utilizei a famosa lib numpy, pois gosto do sistema de arrays multidimensionais, sendo assim mais fácil de trabalhar com matrizes.
 
 ## Ferramentas Utilizadas 🛠️
